@@ -1,6 +1,14 @@
 import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 import { motion } from "motion/react";
-import { ArrowRight, CheckCircle2, Mail, MapPin, Phone } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  Mail,
+  MapPin,
+  Menu,
+  Phone,
+  X,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -382,6 +390,7 @@ export default function App() {
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [mobileSection, setMobileSection] = useState<MobileSectionId>("about");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -436,9 +445,9 @@ export default function App() {
           <Button
             variant="outline"
             className="md:hidden rounded-full border-[#1a1a1a] text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-[#f5f2ed] uppercase tracking-widest text-[10px] px-4 h-10"
-            onClick={() => setMobileSection("contact")}
+            onClick={() => setIsMobileMenuOpen((open) => !open)}
           >
-            Contact
+            {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           </Button>
           <div className="hidden md:flex items-center gap-8 text-sm uppercase tracking-widest font-medium">
             <a href="#about" className="hover:opacity-60 transition-opacity">
@@ -465,22 +474,48 @@ export default function App() {
 
       <div className="md:hidden pt-20 pb-6">
         <div className="px-4">
-          <div className="flex gap-2 overflow-x-auto pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-            {mobileSections.map((section) => (
-              <button
-                key={section.id}
-                type="button"
-                onClick={() => setMobileSection(section.id)}
-                className={`shrink-0 rounded-full border px-4 py-2 text-[11px] uppercase tracking-[0.2em] transition-colors ${
-                  mobileSection === section.id
-                    ? "bg-[#1a1a1a] text-[#f5f2ed] border-[#1a1a1a]"
-                    : "bg-transparent text-[#1a1a1a] border-[#1a1a1a]/15"
-                }`}
-              >
-                {section.label}
-              </button>
-            ))}
+          <div className="flex items-center justify-between gap-4 pb-4">
+            <div>
+              <div className="text-[11px] uppercase tracking-[0.2em] text-[#1a1a1a]/55">
+                Mobile View
+              </div>
+              <div className="font-serif text-2xl text-[#1a1a1a]">
+                {mobileSections.find((section) => section.id === mobileSection)?.label}
+              </div>
+            </div>
+            <Button
+              variant="outline"
+              className="rounded-full border-[#1a1a1a]/15 bg-white/70 px-4 h-10 text-[11px] uppercase tracking-[0.2em] text-[#1a1a1a]"
+              onClick={() => setIsMobileMenuOpen((open) => !open)}
+            >
+              {isMobileMenuOpen ? "Close" : "Menu"}
+            </Button>
           </div>
+
+          {isMobileMenuOpen && (
+            <div className="mb-6 rounded-[1.75rem] border border-[#1a1a1a]/10 bg-white p-2 shadow-sm">
+              {mobileSections.map((section) => (
+                <button
+                  key={section.id}
+                  type="button"
+                  onClick={() => {
+                    setMobileSection(section.id);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`flex w-full items-center justify-between rounded-[1.25rem] px-4 py-3 text-left transition-colors ${
+                    mobileSection === section.id
+                      ? "bg-[#1a1a1a] text-[#f5f2ed]"
+                      : "text-[#1a1a1a] hover:bg-[#f5f2ed]"
+                  }`}
+                >
+                  <span className="font-medium">{section.label}</span>
+                  <span className="text-[10px] uppercase tracking-[0.2em] opacity-60">
+                    Open
+                  </span>
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         {mobileSection === "about" && <AboutSection mobile />}
