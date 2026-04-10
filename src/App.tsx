@@ -242,8 +242,8 @@ function ContactDetails() {
         </div>
         <div>
           <div className="text-xs uppercase tracking-widest opacity-50 mb-1">Phone</div>
-          <a href="tel:8431502356" className="text-base sm:text-lg hover:opacity-70 transition-opacity">
-            8431502356
+          <a href="tel:+918431502356" className="text-base sm:text-lg hover:opacity-70 transition-opacity">
+            +91 84315 02356
           </a>
         </div>
       </div>
