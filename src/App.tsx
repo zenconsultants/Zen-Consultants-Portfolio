@@ -35,7 +35,7 @@ const services = [
 
 const projects = [
   {
-    client: "Netlink Software",
+    client: "Acme Software",
     role: "Scale-up Recruitment & PnL Turnaround",
     image:
       "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop",
