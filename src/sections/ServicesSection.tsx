@@ -13,10 +13,6 @@ const services = [
     title: "Workforce Optimization",
     desc: "Aligning human capital with your financial objectives for peak organizational performance and ROI.",
   },
-  {
-    title: "Software Development",
-    desc: "Delivering website-related solutions, Android and iOS mobile app development, plus project management, product management, and scrum management support for end-to-end execution.",
-  },
 ];
 
 export function ServicesSection({ mobile = false }: { mobile?: boolean }) {
@@ -38,7 +34,7 @@ export function ServicesSection({ mobile = false }: { mobile?: boolean }) {
           </div>
         </div>
 
-        <div className="grid gap-5 sm:gap-8 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-5 sm:gap-8 md:grid-cols-3">
           {services.map((service, i) => (
             <Card
               key={service.title}
@@ -54,6 +50,42 @@ export function ServicesSection({ mobile = false }: { mobile?: boolean }) {
             </Card>
           ))}
         </div>
+
+        <Card className="mt-8 sm:mt-10 border-none rounded-[2rem] bg-[#1a1a1a] text-[#f5f2ed] overflow-hidden">
+          <CardContent className="p-6 sm:p-10">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+              <div className="max-w-2xl">
+                <div className="text-xs uppercase tracking-[0.25em] opacity-60 mb-3">
+                  Software Development
+                </div>
+                <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl font-light mb-4">
+                  Digital product and delivery support for modern teams
+                </h3>
+                <p className="opacity-75 leading-relaxed">
+                  We support end-to-end software initiatives across website delivery,
+                  mobile app development, and agile execution for growing businesses.
+                </p>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-2 lg:max-w-2xl">
+                {[
+                  "Website related tasks",
+                  "Mobile app development (Android and iOS)",
+                  "Project management",
+                  "Product management",
+                  "Scrum management",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-sm sm:text-base"
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </section>
   );
