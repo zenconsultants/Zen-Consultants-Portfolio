@@ -1,5 +1,5 @@
 import { Dispatch, FormEvent, SetStateAction } from "react";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -24,6 +24,8 @@ type ContactSectionProps = {
 };
 
 function ContactDetails() {
+  const whatsappLink = "https://wa.me/918431502356";
+
   return (
     <div className="space-y-5 sm:space-y-6">
       <div className="flex items-center gap-3 sm:gap-4">
@@ -51,6 +53,22 @@ function ContactDetails() {
             className="text-base sm:text-lg hover:opacity-70 transition-opacity"
           >
             +91 84315 02356
+          </a>
+        </div>
+      </div>
+      <div className="flex items-center gap-3 sm:gap-4">
+        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/20 flex items-center justify-center shrink-0">
+          <MessageCircle className="w-5 h-5" />
+        </div>
+        <div>
+          <div className="text-xs uppercase tracking-widest opacity-50 mb-1">WhatsApp</div>
+          <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noreferrer"
+            className="text-base sm:text-lg hover:opacity-70 transition-opacity"
+          >
+            Chat on WhatsApp
           </a>
         </div>
       </div>
