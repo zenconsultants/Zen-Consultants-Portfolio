@@ -1,21 +1,18 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { ServiceCard } from "@/src/components/ServiceCard";
+import { servicePages } from "@/src/data/services";
 
-const services = [
-  {
-    title: "Strategic Staffing",
-    desc: "Sourcing and placing top-tier talent that aligns perfectly with your company culture and operational goals.",
-  },
-  {
-    title: "PnL Management",
-    desc: "Optimizing profit and loss structures to maximize margins, reduce overhead, and drive sustainable growth.",
-  },
-  {
-    title: "Workforce Optimization",
-    desc: "Aligning human capital with your financial objectives for peak organizational performance and ROI.",
-  },
-];
+type ServicesSectionProps = {
+  mobile?: boolean;
+  onOpenService: (slug: string) => void;
+};
 
-export function ServicesSection({ mobile = false }: { mobile?: boolean }) {
+export function ServicesSection({
+  mobile = false,
+  onOpenService,
+}: ServicesSectionProps) {
+  const softwareDevelopment = servicePages[3];
+
   return (
     <section
       id="services"
@@ -35,19 +32,13 @@ export function ServicesSection({ mobile = false }: { mobile?: boolean }) {
         </div>
 
         <div className="grid gap-5 sm:gap-8 md:grid-cols-3">
-          {services.map((service, i) => (
-            <Card
-              key={service.title}
-              className="bg-[#f5f2ed] border-none rounded-3xl overflow-hidden group hover:shadow-xl transition-all duration-500"
-            >
-              <CardContent className="p-6 sm:p-10">
-                <div className="text-3xl sm:text-4xl font-serif font-light opacity-30 mb-4 sm:mb-6">
-                  0{i + 1}
-                </div>
-                <h3 className="text-xl font-medium mb-4">{service.title}</h3>
-                <p className="opacity-70 leading-relaxed">{service.desc}</p>
-              </CardContent>
-            </Card>
+          {servicePages.slice(0, 3).map((service, index) => (
+            <ServiceCard
+              key={service.slug}
+              index={index}
+              service={service}
+              onOpen={onOpenService}
+            />
           ))}
         </div>
 
@@ -68,13 +59,7 @@ export function ServicesSection({ mobile = false }: { mobile?: boolean }) {
               </div>
 
               <div className="grid gap-3 sm:grid-cols-2 lg:max-w-2xl">
-                {[
-                  "Website related tasks",
-                  "Mobile app development (Android and iOS)",
-                  "Project management",
-                  "Product management",
-                  "Scrum management",
-                ].map((item) => (
+                {softwareDevelopment.highlights.map((item) => (
                   <div
                     key={item}
                     className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-sm sm:text-base"
@@ -84,6 +69,13 @@ export function ServicesSection({ mobile = false }: { mobile?: boolean }) {
                 ))}
               </div>
             </div>
+            <button
+              type="button"
+              onClick={() => onOpenService(softwareDevelopment.slug)}
+              className="mt-6 inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] font-medium hover:opacity-75 transition-opacity"
+            >
+              View Software Development Page
+            </button>
           </CardContent>
         </Card>
       </div>
