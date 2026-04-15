@@ -13,6 +13,10 @@ const services = [
     title: "Workforce Optimization",
     desc: "Aligning human capital with your financial objectives for peak organizational performance and ROI.",
   },
+  {
+    title: "Software Development",
+    desc: "Delivering website-related solutions, Android and iOS mobile app development, plus project management, product management, and scrum management support for end-to-end execution.",
+  },
 ];
 
 export function ServicesSection({ mobile = false }: { mobile?: boolean }) {
@@ -28,13 +32,13 @@ export function ServicesSection({ mobile = false }: { mobile?: boolean }) {
               Our Expertise
             </h2>
             <p className="opacity-70 max-w-md text-sm sm:text-base">
-              Tailored recruitment and financial solutions designed to elevate your
-              workforce and maximize profitability.
+              Tailored recruitment, operational, and software delivery solutions designed
+              to strengthen teams, streamline execution, and maximize business impact.
             </p>
           </div>
         </div>
 
-        <div className="grid gap-5 sm:gap-8 md:grid-cols-3">
+        <div className="grid gap-5 sm:gap-8 md:grid-cols-2 xl:grid-cols-4">
           {services.map((service, i) => (
             <Card
               key={service.title}
