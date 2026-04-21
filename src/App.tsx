@@ -62,6 +62,17 @@ export default function App() {
     setIsMobileMenuOpen(false);
   };
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen((open) => {
+      if (open) {
+        return false;
+      }
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return true;
+    });
+  };
+
   const goHome = (hash?: string) => {
     navigate(hash ? `/${hash}` : "/");
   };
@@ -127,7 +138,7 @@ export default function App() {
           <Button
             variant="outline"
             className="md:hidden rounded-full border-[#1a1a1a] text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-[#f5f2ed] uppercase tracking-widest text-[10px] px-4 h-10"
-            onClick={() => setIsMobileMenuOpen((open) => !open)}
+            onClick={toggleMobileMenu}
           >
             {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           </Button>
