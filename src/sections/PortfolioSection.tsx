@@ -2,17 +2,6 @@ import { CheckCircle2 } from "lucide-react";
 
 const projects = [
   {
-    client: "Acme Software",
-    role: "Scale-up Recruitment & PnL Turnaround",
-    image:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop",
-    results: [
-      "Placed 50+ key technical roles",
-      "Improved profit margins by 22%",
-      "Reduced time-to-hire by 40%",
-    ],
-  },
-  {
     client: "Global Retail Partners",
     role: "Executive Search & Financial Restructuring",
     image:
