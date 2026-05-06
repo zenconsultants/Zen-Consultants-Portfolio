@@ -14,6 +14,7 @@ import {
   Users,
   X,
 } from "lucide-react";
+import zenConsultantsLogo from "./assets/zen-consultants-logo.svg";
 
 type EmployerFormData = {
   name: string;
@@ -124,7 +125,9 @@ function App() {
 function Brand({ onNavigate }: { onNavigate: (href: string) => void }) {
   return (
     <button className="zc-brand" type="button" onClick={() => onNavigate("/")}>
-      <span className="zc-brand-mark">Z</span>
+      <span className="zc-brand-mark" aria-hidden="true">
+        <img src={zenConsultantsLogo} alt="" />
+      </span>
       <span>Zen Consultants</span>
     </button>
   );
@@ -303,7 +306,7 @@ function HomePage({ onNavigate }: { onNavigate: (href: string) => void }) {
             <SectionHead
               eyebrow="Hiring solutions"
               title="Clear hiring categories for employers and candidates."
-              text="This makes the website more searchable and easier to understand for companies looking for a specific hiring model."
+              text="Explore clearly defined hiring categories that help you quickly identify the right recruitment solution for every hiring need."
             />
             <div className="zc-grid-4">
               {hiringSolutions.map(([title, text]) => (
